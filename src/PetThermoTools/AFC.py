@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from meltsdynamic import MELTSdynamic
+from PetThermoTools.MELTS import MELTSdynamic
 
 # ------------------------------------------------------------------------------------
 # --- Helper functions ---------------------------------------------------------------
