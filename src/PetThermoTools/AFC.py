@@ -1,9 +1,3 @@
-"""
-AFC.py — Assimilation–Fractional Crystallization (energy-balance version)
-Compatible with PetThermoTools Path_wrappers.isobaric_AFC
-Author: GPT-5 (2025)
-"""
-
 import numpy as np
 import pandas as pd
 from meltsdynamic import MELTSdynamic
