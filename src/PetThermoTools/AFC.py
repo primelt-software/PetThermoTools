@@ -1,5 +1,6 @@
-import numpy as np
-import pandas as pd
+from PetThermoTools.GenFuncs import *
+from PetThermoTools.Plotting import *
+from PetThermoTools.MELTS import *
 
 # ------------------------------------------------------------------------------------
 # --- Helper functions ---------------------------------------------------------------
