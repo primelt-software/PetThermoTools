@@ -2,6 +2,9 @@ import numpy as np
 import pandas as pd
 from PetThermoTools.Path import *
 from PetThermoTools.AFC import energy_balance_AFC
+from PetThermoTools.GenFuncs import *
+from PetThermoTools.Plotting import *
+from PetThermoTools.MELTS import *
 
 def isobaric_crystallisation(Model = None, bulk = None, Frac_solid = None, Frac_fluid = None, 
                              T_path_C = None, T_start_C = None, T_end_C = None, dt_C = None, 
