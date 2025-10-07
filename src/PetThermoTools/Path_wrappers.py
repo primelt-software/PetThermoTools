@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 from PetThermoTools.Path import *
+from PetThermoTools.AFC import energy_balance_AFC
 
 def isobaric_crystallisation(Model = None, bulk = None, Frac_solid = None, Frac_fluid = None, 
                              T_path_C = None, T_start_C = None, T_end_C = None, dt_C = None, 
@@ -633,6 +634,62 @@ def isentropic_decompression(Model = None, bulk = None, Frac_solid = None, Frac_
                          multi_processing=multi_processing)
 
     return Results
+
+
+def isobaric_AFC(
+    Model=None, bulk_magma=None, bulk_assimilant=None,
+    P_bar=None,
+    T_path_C=None, T_start_C=None, T_end_C=None, dt_C=None,
+    T_wall_C=700.0,
+    find_liquidus=None, Frac_solid=True, Frac_fluid=None,
+    fO2_buffer=None, fO2_offset=None,
+    Crystallinity_limit=None, fluid_sat=None,
+    Suppress=['rutile','tridymite'], Suppress_except=False
+):
+    """
+    Isobaric energy-balance AFC wrapper (same style as isobaric_crystallisation).
+    """
+    return energy_balance_AFC(
+        Model=Model,
+        bulk_magma=bulk_magma,
+        bulk_assimilant=bulk_assimilant,
+        P_bar=P_bar,
+        T_path_C=T_path_C, T_start_C=T_start_C, T_end_C=T_end_C, dt_C=dt_C,
+        T_wall_C=T_wall_C,
+        find_liquidus=find_liquidus,
+        Frac_solid=Frac_solid, Frac_fluid=Frac_fluid,
+        fO2_buffer=fO2_buffer, fO2_offset=fO2_offset,
+        Crystallinity_limit=Crystallinity_limit, fluid_sat=fluid_sat,
+        Suppress=Suppress, Suppress_except=Suppress_except
+    )
+
+def polybaric_AFC(
+    Model=None, bulk_magma=None, bulk_assimilant=None,
+    P_path_bar=None, P_start_bar=None, P_end_bar=None, dp_bar=None,
+    T_path_C=None, T_start_C=None, T_end_C=None, dt_C=None,
+    T_wall_C=700.0,
+    find_liquidus=None, Frac_solid=True, Frac_fluid=None,
+    fO2_buffer=None, fO2_offset=None,
+    Crystallinity_limit=None, fluid_sat=None,
+    Suppress=['rutile','tridymite'], Suppress_except=False
+):
+    """
+    Polybaric energy-balance AFC wrapper (same style as polybaric_crystallisation_path).
+    """
+    return energy_balance_AFC(
+        Model=Model,
+        bulk_magma=bulk_magma,
+        bulk_assimilant=bulk_assimilant,
+        P_path_bar=P_path_bar, P_start_bar=P_start_bar, P_end_bar=P_end_bar, dp_bar=dp_bar,
+        T_path_C=T_path_C, T_start_C=T_start_C, T_end_C=T_end_C, dt_C=dt_C,
+        T_wall_C=T_wall_C,
+        find_liquidus=find_liquidus,
+        Frac_solid=Frac_solid, Frac_fluid=Frac_fluid,
+        fO2_buffer=fO2_buffer, fO2_offset=fO2_offset,
+        Crystallinity_limit=Crystallinity_limit, fluid_sat=fluid_sat,
+        Suppress=Suppress, Suppress_except=Suppress_except
+    )
+
 
 # def isenthalpic_decompression(Model = None, bulk = None, Frac_solid = None, Frac_fluid = None, T_C = None, P_start_bar = None, P_end_bar = None, dp_bar = None, Fe3Fet_Liq = None, H2O_Liq = None, CO2_Liq = None, find_liquidus = None, fO2_buffer = None, fO2_offset = None, label = None, timeout = None, fluid_sat = None):
 
